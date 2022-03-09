@@ -1,24 +1,28 @@
-# This is a sample Python script.
+""" wordle cheat script for wordlers having a bad day"""
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+
+    known_letters = input("Known Letters - Enter your known letters (no spaces. example: frw) or leave blank if none: ")
+    skip_letters = input("Skip Letters - Enter letters you know are not in word (no spaces. example: vnb): ")
+    known_letter = input("You get 1 green letter hint, enter a letter you know the position of, leave blank if none: ")
+    known_position: int = input("What position is the letter (1-5), leave blank if none: ")
+
+    if known_position:
+        try:
+            known_position = int(known_position)
+        except ValueError:
+            print("Known position must be an integer, try again")
+            exit
+
     with open('words.txt', "r") as words:
         possible_words = []
 
-        my_letters = ["o", "r", "aa"]
-        exclude_letters = ["s", "h", "u", "t", "p",  "w", "n", "c"]
+        if not known_letters and not skip_letters:
+            raise ValueError("You must enter at least one known letter or one skip letter")
+
+        my_letters = list(known_letters)
+        exclude_letters = list(skip_letters)
         # you get one green hint
-        known_letter = "o"
-        position = 3
 
         word_list = words.read().split('\n')
 
@@ -30,10 +34,9 @@ if __name__ == '__main__':
 
             if all(ml in word_as_list for ml in my_letters):
                 if known_letter and known_letter != "":
-                    if not(position):
-                        position = 1
-
-                    if known_letter == word[(position-1)]:
+                    if not known_position:
+                        known_position = 1
+                    if known_letter == word[(known_position-1)]:
                         possible_words.append(word)
                 else:
                     possible_words.append(word)

@@ -6,8 +6,10 @@ This is a simple cheat program for wordle, there are much more sophisticated one
 ## How to use
 Dear Scoundrels: Only use if you are stuck.
 
-Usage is simple. Add the letters you know are in the word to the `my_letters` list, add the letters you know are going to be excluded to the `exclude_letters` list.
+Usage is simple. Clone the repo and run `python main.py` from the command line.
 
-You get one green hint. If you know the position of a letter, assign the letter (as a string) to the `known_letter` variable, add the position as an int to the `position` variable.
+When prompted enter your clues.
 
-Note taht `position` would start at one, so if you know the first letter, set `position` to 1, and so on and so forth. 
+After the last clue is entered the list of possible words will be revealed.
+
+`./words.txt` should contain all possible answers for wordle... The worst kept secret on the internet at this point in time.
